@@ -23,7 +23,7 @@ import android.os.Build;
 
 public class IonicKeyboard extends CordovaPlugin {
     private OnGlobalLayoutListener list;
-    private View rootView;
+    private View rootView = null;
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
@@ -128,7 +128,9 @@ public class IonicKeyboard extends CordovaPlugin {
 
     @Override
     public void onDestroy() {
-        rootView.getViewTreeObserver().removeOnGlobalLayoutListener(list);
+        if (rootView != null) {
+            rootView.getViewTreeObserver().removeOnGlobalLayoutListener(list);
+        }
     }
 
 }
